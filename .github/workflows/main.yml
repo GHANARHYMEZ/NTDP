@@ -1,0 +1,29 @@
+# OBO Nzema East NTDP – MDA District Dashboard (Windows + Android)
+
+One interface (www/index.html) packaged two ways:
+- Windows: Electron, built into an installer (.exe)
+- Android: Capacitor, built into an APK
+
+Requirements: Node.js 18+ (nodejs.org). The first `npm install` needs internet.
+For Android also: Android Studio (includes the SDK) and JDK 17.
+
+## Setup (once)
+    npm install
+
+## Windows app
+Test:   npm run win:dev
+Build:  npm run win
+The installer appears in dist/ ("OBO Nzema East NTDP Setup 1.0.0.exe"). Build on a Windows PC.
+
+## Android app
+    npm run android:init      (first time only: creates the android/ project)
+    npm run android:open      (opens Android Studio)
+In Android Studio: Build > Build Bundle(s) / APK(s) > Build APK(s).
+The file is android/app/build/outputs/apk/debug/app-debug.apk. Copy it to the phone and install it
+(allow "install unknown apps"). For Google Play you need a signed release build (Build > Generate Signed Bundle).
+After changing www/index.html run: npm run android:sync
+
+## Behaviour differences
+- Excel and image downloads: on Windows a Save dialog appears; on Android the share sheet opens (Save to Files, WhatsApp, email).
+- Print / PDF: on Windows the print dialog opens (choose "Microsoft Print to PDF"). On Android it shares a report .html file; open it in Chrome and use Print > Save as PDF.
+- Accounts are stored on each device. They do not sync between devices.
